@@ -11,3 +11,10 @@ exports.config =
         'vendor.css': /^(bower_components|vendor)/
     templates:
       joinTo: 'app.js'
+  overrides:
+    production:
+      paths:
+        public: '/usr/share/nginx/www/'
+      optimize: true
+      sourceMaps: false
+      plugins: autoReload: enabled: false
