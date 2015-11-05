@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe package 'nginx' do
@@ -11,13 +13,12 @@ end
 
 describe port(80) do
   it { expect(subject).to be_listening }
-end 
+end
 
 describe file '/etc/nginx/nginx.conf' do
-
   let(:root_location) { 'location / {' }
   let(:api_location) { 'location /api/ {' }
-  
+
   it { expect(subject).to exist }
   it { expect(subject).to be_file }
   it { expect(subject.content).to include(root_location) }

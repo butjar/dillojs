@@ -1,16 +1,18 @@
+# encoding: UTF-8
+
 require 'rake'
 require 'rspec/core/rake_task'
 
 ENV['DRIVER'] ||= 'vagrant'
 
-if !(ENV['DRIVER'].eql?('vagrant') || ENV['DRIVER'].eql?('docker'))
+unless ENV['DRIVER'].eql?('vagrant') || ENV['DRIVER'].eql?('docker')
   puts "Set the DRIVER environment variable either to 'vagrant' or 'docker'"
   exit 1
 end
 
-task :spec => 'spec:all'
+task spec: 'spec:all'
 
 namespace :spec do
-  desc "Run serverspec"
+  desc 'Run serverspec'
   RSpec::Core::RakeTask.new(:all)
 end

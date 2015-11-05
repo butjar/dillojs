@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe package 'mongodb' do
@@ -9,6 +11,6 @@ describe service 'mongodb' do
   it { expect(subject).to be_running }
 end
 
-describe port(27017) do
+describe port(27_017) do
   it { expect(subject).to be_listening }
-end 
+end
