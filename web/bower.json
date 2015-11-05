@@ -1,0 +1,26 @@
+{
+  "name": "your-app",
+  "version": "0.0.1",
+  "main": "public/vendor.js",
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "bootstrap": "~3.3.5"
+  },
+  "overrides": {
+    "backbone": {
+      "dependencies": {
+        "underscore": "~1.8.3",
+        "jquery": "~2.1.4"
+      },
+      "main": [
+        "backbone.js"
+      ]
+    },
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
