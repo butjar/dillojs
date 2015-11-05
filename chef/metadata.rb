@@ -1,0 +1,13 @@
+name             'dillojs'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures dillojs'
+long_description 'Installs/Configures dillojs'
+version          '0.1.0'
+
+depends 'apt', '~> 2.9.1'
+depends 'mongodb', '~> 0.16.2' 
+depends 'nodejs', '~> 2.4.2'
+depends 'nginx', '~> 2.7.6'
+depends 'git', '~> 4.3.4'
