@@ -3,7 +3,7 @@ maintainer       'Martin Fleischer'
 maintainer_email 'martin.fleischer@kreuzwerker.de'
 description      'Installs/Configures dillojs'
 long_description 'Installs/Configures dillojs'
-version          '0.1.0'
+version          '0.1.1'
 
 depends 'apt', '~> 2.9.1'
 depends 'mongodb', '~> 0.16.2'
