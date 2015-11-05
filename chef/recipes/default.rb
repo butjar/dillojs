@@ -3,15 +3,8 @@
 # Cookbook Name:: dillojs
 # Recipe:: default
 
-include_recipe 'apt'
-include_recipe 'git'
-include_recipe 'nodejs'
-include_recipe 'nodejs::npm'
-include_recipe 'mongodb'
-include_recipe 'nginx'
-
-bash 'copy source code' do
-  code 'cp -r /srv/dillojs/web /srv/dillojs/api /srv/dillojs/nginx /opt/'
+%w(apt git nodejs nodejs::npm mongodb nginx).each do |recipe|
+  include_recipe recipe
 end
 
 %w(bower brunch).each do |pkg|

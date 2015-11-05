@@ -5,6 +5,9 @@ driver:
     - ["../../dillojs", "/srv/dillojs"]
   network:
     - ["forwarded_port", {guest: 80, host: 8080}]
+  provision: true
+  vagrantfiles:
+    - Vagrantfile.rb
 provisioner:
   name: chef_solo
 
