@@ -1,10 +1,7 @@
+# encoding: UTF-8
 #
 # Cookbook Name:: dillojs
 # Recipe:: default
-#
-# Copyright (C) 2015 YOUR_NAME
-#
-# All rights reserved - Do Not Redistribute
 
 include_recipe 'apt'
 include_recipe 'git'
@@ -17,8 +14,8 @@ bash 'copy source code' do
   code 'cp -r /srv/dillojs/web /srv/dillojs/api /srv/dillojs/nginx /opt/'
 end
 
-%w(bower brunch).each do |pkg| 
-  nodejs_npm "#{pkg}"
+%w(bower brunch).each do |pkg|
+  nodejs_npm pkg
 end
 
 %w(bower_components node_modules public).each do |dir|
@@ -29,8 +26,8 @@ end
 end
 
 %w(/opt/web /opt/api).each do |pkg|
-  nodejs_npm "#{pkg}" do
-    path "#{pkg}"
+  nodejs_npm pkg do
+    path pkg
     json true
   end
 end
