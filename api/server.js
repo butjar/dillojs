@@ -11,12 +11,13 @@ var app = express();
 var port = process.env.PORT || 8080;
 var router = express.Router();
 var Dillo = mongoose.model('Dillo', { weight: Number, alive: Boolean });
+var mongoUrl = process.env.MONGO_URL || 'localhost'
 
 //app.use(express.static(path.join(__dirname, '../', 'web/public')));
 app.use(cors());
 
 app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost:27017/dillojs');
+mongoose.connect('mongodb://' + mongoUrl + ':27017/dillojs');
 
 // CRUD
 router.route('/dillo')
