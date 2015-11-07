@@ -3,6 +3,7 @@
 AllCops:
   Exclude:
     - 'metadata.rb'
+    - 'Vagrantfile.rb'
 
 Style/Encoding:
   Enabled: true
