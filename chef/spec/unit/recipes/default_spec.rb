@@ -16,24 +16,34 @@ describe 'dillojs::default' do
 
   # https://github.com/sethvargo/chefspec#include_recipe
   # https://github.com/sethvargo/chefspec/issues/569
-  describe 'includes recipes' do
-    it { expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('apt'); chef_run }
-    it { expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('git'); chef_run }
-    it { expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('nodejs'); chef_run }
-    it { expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('nodejs::npm'); chef_run }
-    it { expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('mongodb'); chef_run }
-    it { expect_any_instance_of(Chef::Recipe).to receive(:include_recipe).with('nginx'); chef_run }
+  describe 'recipes' do
+    %w(apt git nodejs nodejs::npm mongodb nginx dillojs::clean).each do |recipe|
+      it 'includes apt' do
+        expect_any_instance_of(Chef::Recipe)
+          .to receive(:include_recipe).with(recipe)
+        chef_run
+      end
+    end
   end
 
   describe 'calls resources' do
-    it { expect(chef_run).to install_nodejs_npm('bower') }
-    it { expect(chef_run).to install_nodejs_npm('brunch') }
-    it { expect(chef_run).to install_nodejs_npm(api_dir) }
-    it { expect(chef_run).to install_nodejs_npm(app_dir) }
     it { expect(chef_run).to run_bash('install bower components and build app') }
+    %w(bower brunch).each do |pkg|
+      it { expect(chef_run).to install_nodejs_npm(pkg) }
+    end
+
+    %w(/opt/dillojs/api /opt/dillojs/web).each do |dir|
+      it { expect(chef_run).to install_nodejs_npm(dir) }
+    end
+
     it { expect(chef_run).to create_directory('/usr/share/nginx/www/') }
-    it { expect(chef_run).to run_bash("copy_#{api_dir}/dillojs-api.conf_to_/etc/init/") }
-    it { expect(chef_run).to run_bash("copy_#{dillo_home}/nginx/etc/nginx.conf_to_/etc/nginx/") }
+
+    [
+      'copy_/opt/dillojs/api/dillojs-api.conf_to_/etc/init/',
+      'copy_/opt/dillojs/nginx/etc/nginx.conf_to_/etc/nginx/'
+    ].each do |command|
+      it { expect(chef_run).to run_bash(command) }
+    end
     it { expect(chef_run).to enable_service('dillojs-api') }
     it { expect(chef_run).to start_service('dillojs-api') }
     it { expect(chef_run).to enable_service('mongodb') }
