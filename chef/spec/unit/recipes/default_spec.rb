@@ -28,9 +28,6 @@ describe 'dillojs::default' do
   describe 'calls resources' do
     it { expect(chef_run).to install_nodejs_npm('bower') }
     it { expect(chef_run).to install_nodejs_npm('brunch') }
-    it { expect(chef_run).to delete_directory("#{app_dir}/bower_components") }
-    it { expect(chef_run).to delete_directory("#{app_dir}/node_modules") }
-    it { expect(chef_run).to delete_directory("#{app_dir}/public") }
     it { expect(chef_run).to install_nodejs_npm(api_dir) }
     it { expect(chef_run).to install_nodejs_npm(app_dir) }
     it { expect(chef_run).to run_bash('install bower components and build app') }

@@ -3,19 +3,12 @@
 # Cookbook Name:: dillojs
 # Recipe:: default
 
-%w(apt git nodejs nodejs::npm mongodb nginx).each do |recipe|
+%w(apt git nodejs nodejs::npm mongodb nginx dillojs::clean).each do |recipe|
   include_recipe recipe
 end
 
 node['dillojs']['npm']['packages']['global'].each do |pkg|
   nodejs_npm pkg
-end
-
-%w(bower_components node_modules public).each do |dir|
-  directory "#{node['dillojs']['web']['home']}/#{dir}" do
-    recursive true
-    action :delete
-  end
 end
 
 [ node['dillojs']['api']['home'], node['dillojs']['web']['home'] ].each do |pkg|
