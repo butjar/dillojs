@@ -1,15 +1,22 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 require 'chefspec'
 
 describe 'dillojs::default' do
   before do
-    allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).and_call_original
-    %w(apt git nodejs nodejs::npm mongodb nginx).each do |recipe|
-      allow_any_instance_of(Chef::Recipe).to receive(:include_recipe).with(recipe)
+    allow_any_instance_of(Chef::Recipe)
+      .to receive(:include_recipe).and_call_original
+    %w(apt git nodejs nodejs::npm mongodb nginx dillojs::clean).each do |recipe|
+      allow_any_instance_of(Chef::Recipe)
+        .to receive(:include_recipe).with(recipe)
     end
   end
 
-  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04').converge(described_recipe) }
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04')
+      .converge(described_recipe)
+  end
   let(:dillo_home) { '/opt/dillojs' }
   let(:api_dir) { "#{dillo_home}/api" }
   let(:app_dir) { "#{dillo_home}/web" }
