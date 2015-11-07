@@ -13,6 +13,7 @@ describe 'dillojs::default' do
   let(:dillo_home) { '/opt/dillojs' }
   let(:api_dir) { "#{dillo_home}/api" }
   let(:app_dir) { "#{dillo_home}/web" }
+  let(:build_app_resource) { 'install bower components and build app' }
 
   # https://github.com/sethvargo/chefspec#include_recipe
   # https://github.com/sethvargo/chefspec/issues/569
@@ -27,7 +28,6 @@ describe 'dillojs::default' do
   end
 
   describe 'calls resources' do
-    it { expect(chef_run).to run_bash('install bower components and build app') }
     %w(bower brunch).each do |pkg|
       it { expect(chef_run).to install_nodejs_npm(pkg) }
     end
@@ -35,6 +35,8 @@ describe 'dillojs::default' do
     %w(/opt/dillojs/api /opt/dillojs/web).each do |dir|
       it { expect(chef_run).to install_nodejs_npm(dir) }
     end
+
+    it { expect(chef_run).to run_bash(build_app_resource) }
 
     it { expect(chef_run).to create_directory('/usr/share/nginx/www/') }
 
