@@ -11,7 +11,7 @@ node['dillojs']['npm']['packages']['global'].each do |pkg|
   nodejs_npm pkg
 end
 
-[ node['dillojs']['api']['home'], node['dillojs']['web']['home'] ].each do |pkg|
+[node['dillojs']['api']['home'], node['dillojs']['web']['home']].each do |pkg|
   nodejs_npm pkg do
     path pkg
     json true
