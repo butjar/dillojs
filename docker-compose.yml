@@ -1,0 +1,24 @@
+api:
+  build: api/
+  links:
+    - mongo
+  environment:
+    - MONGO_URL=mongo
+
+mongo:
+  image: mongo
+
+nginx:
+  image: nginx
+  ports:
+    - "80:80"
+  links:
+    - api
+  volumes:
+    - ./nginx/etc/nginx.conf:/etc/nginx/nginx.conf
+  volumes_from:
+    - web
+
+web:
+  build: web/
+
