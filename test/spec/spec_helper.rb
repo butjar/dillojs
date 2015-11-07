@@ -3,6 +3,11 @@
 require 'serverspec'
 require 'net/ssh'
 
+# Require shared examples
+# https://github.com/rubyisbeautiful/serverspec_examples/blob/master/spec/spec_helper.rb
+spec_dir = Pathname.new(File.join(File.dirname(__FILE__)))
+Dir[spec_dir.join('shared/**/*.rb')].sort.each { |f| require f }
+
 if ENV['ASK_SUDO_PASSWORD']
   begin
     require 'highline/import'
