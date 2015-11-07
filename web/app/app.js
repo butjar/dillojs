@@ -1,4 +1,4 @@
-var apiBaseUrl = 'http://localhost:8080/api'
+var apiBaseUrl = '/api'
 
 Dillo = Backbone.Model.extend({ 
   idAttribute: '_id', 
