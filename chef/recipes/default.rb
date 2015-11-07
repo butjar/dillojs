@@ -37,6 +37,10 @@ end
   end
 end
 
+bash 'set api to localhost in hosts' do
+  code "sudo sed -i '/^127.0.0.1/ s/$/ api/' /etc/hosts"
+end
+
 %w(dillojs-api mongodb).each do |s|
   service s do
     action [:enable, :start]

@@ -53,10 +53,17 @@ describe 'dillojs::default' do
     ].each do |command|
       it { expect(chef_run).to run_bash(command) }
     end
+
+    it { expect(chef_run).to run_bash('set api to localhost in hosts') }
+
     it { expect(chef_run).to enable_service('dillojs-api') }
+
     it { expect(chef_run).to start_service('dillojs-api') }
+
     it { expect(chef_run).to enable_service('mongodb') }
+
     it { expect(chef_run).to start_service('mongodb') }
+
     it { expect(chef_run).to reload_service('nginx') }
   end
 end
