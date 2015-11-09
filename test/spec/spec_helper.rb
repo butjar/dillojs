@@ -19,7 +19,11 @@ else
   set :sudo_password, ENV['SUDO_PASSWORD']
 end
 
-options = Net::SSH::Config.for(host)
+def ssh?
+  ENV['DRIVER'].eql? 'vagrant'
+end
+
+options = Net::SSH::Config.for(host) if ssh?
 
 case ENV['DRIVER']
 when 'vagrant'
@@ -33,5 +37,7 @@ when 'docker'
   set :backend, :docker
 end
 
-set :host,        options[:host_name]
-set :ssh_options, options
+if ssh?
+  set :host,        options[:host_name]
+  set :ssh_options, options
+end
