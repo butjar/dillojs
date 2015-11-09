@@ -33,7 +33,7 @@ when 'vagrant'
   options[:port] = 2222
   options[:host_name] = '127.0.0.1'
 when 'docker'
-  #   host = ENV['DOCKER_HOST'].match(/tcp:\/\/(.*):.*/)[1]
+  require 'docker'
   set :backend, :docker
 end
 
