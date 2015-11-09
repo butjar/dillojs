@@ -3,20 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Texan armadillo care and control assosiation</title>
-  <link rel="stylesheet" type="text/css" href="vendor.css">
   <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body>
-
   <div class="container">
-    
     <div class="jumbotron">
-
       <h1>Texan armadillo care and control assosiation</h1>
-
       <div id="dillos">
-        <form id="addDillo" action="#">
 
+        <form id="addDillo" action="#">
           <div class="form-group">
             <label for="weight-input">Weight</label>
             <input type="number" class="form-control" id="weight-input" placeholder="1">
@@ -29,10 +24,9 @@
           </div>
 
           <button type="submit" id="add" class="btn btn-default">Add</button>
-
         </form>
-      </div>
 
+      </div>
     </div>
 
     <div id="main">
@@ -47,17 +41,16 @@
         <tbody id="dillo-collection"></tbody>
       </table>
     </div>
-
   </div>
 
   <script type="text/template" id="dillo-template">
-      <tr class="dillo-row">
-        <td><%- _id %></label>
-        <td><input class="toggle" type="number" value="<%- weight %>"></td>
-        <td><input class="toggle" type="checkbox" <% if(alive) { %>checked<% } %> ></td>
-      </tr>
-  </script> 
-  
+    <tr class="dillo-row">
+      <td><%- _id %></label>
+      <td><input class="toggle" type="number" value="<%- weight %>"></td>
+      <td><input class="toggle" type="checkbox" <% if(alive) { %>checked<% } %> ></td>
+    </tr>
+  </script>
+
   <script src="vendor.js" type="text/javascript"></script>
   <script src="app.js" type="text/javascript"></script>
   <script type="text/javascript">
@@ -65,6 +58,5 @@
       app = require('app').init();
     });
   </script>
-
 </body>
 </html>
