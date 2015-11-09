@@ -25,7 +25,6 @@ mongoose.connect('mongodb://' + mongoUrl + ':27017/dillojs');
 router.route('/dillo')
 // CREATE
 .post(function(req, res) {
-  console.log("Create Dillo");
   var dillo = new Dillo({
     weight: req.body.weight,
     alive: req.body.alive
@@ -40,7 +39,6 @@ router.route('/dillo')
 })
 // READ
 .get(function(req, res) {
-  console.log("Return all dillos");
   Dillo.find(function(err, dillos) {
     if (err) {
       res.send(err);
@@ -64,7 +62,6 @@ router.route('/dillo/:dillo_id')
     if (err) {
       res.send(err);
     }
-    console.log(req.body);
     dillo.weight = req.body.weight;
     dillo.alive = req.body.alive;
     dillo.save(function(err) {
