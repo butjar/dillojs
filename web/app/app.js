@@ -27,27 +27,38 @@ dilloCollection = new DilloCollection();
 AppView = Backbone.View.extend({
   el: '#dillos',
   initialize: function () {
-    dilloCollection.on("reset", this.render, this);
+    dilloCollection.on("change", this.render, this);
     dilloCollection.on("add", this.addOne, this );
-    dilloCollection.fetch();
+    dilloCollection.fetch().done(function() {
+      console.log("fetched dilloCollection");
+    });
   },
+
   events: {
     'click #add': 'createDillo'
   },
+
   createDillo: function(evt){
     var weight = this.$('#weight-input').val().trim(),
         alive = this.$('#alive-input').prop('checked'),
         _dillo = {_id: null, alive: alive};
 
-    !parseInt(weight) === NaN ? _dillo.weight = weight : undefined; 
+    if (isNaN( parseInt(weight) )) {
+      alert("Weight must be a number!");
+      return;
+    } else {
+      _dillo.weight = weight;
 
-    var dillo = dilloCollection.create(_dillo);
-    dillo.on("sync", this.render, this);
+      dilloCollection.create(_dillo);
+    }
+
   },
+
   addOne: function(dillo){
     var view = new DilloView({ model: dillo });
     $('#dillo-collection').append(view.render().el);
   },
+
   render: function(){
     $('#dillo-collection').html('');
     dilloCollection.each(this.addOne, this);
