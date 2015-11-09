@@ -1,7 +1,7 @@
-var apiBaseUrl = '/api'
+var apiBaseUrl = '/api';
 
-Dillo = Backbone.Model.extend({ 
-  idAttribute: '_id', 
+Dillo = Backbone.Model.extend({
+  idAttribute: '_id',
   defaults: {
     weight: 1,
     alive: true
@@ -10,7 +10,7 @@ Dillo = Backbone.Model.extend({
 
 DilloCollection = Backbone.Collection.extend({
   model: Dillo,
-  url: apiBaseUrl + "/dillo" 
+  url: apiBaseUrl + "/dillo"
 });
 
 DilloView = Backbone.View.extend({
@@ -36,9 +36,10 @@ AppView = Backbone.View.extend({
   },
   createDillo: function(evt){
     var weight = this.$('#weight-input').val().trim(),
-        alive = this.$('#alive-input').prop('checked');
-        _dillo = {_id: null, alive: alive}
-    !parseInt(weight) === NaN ? _dillo.weight = weight : undefined
+        alive = this.$('#alive-input').prop('checked'),
+        _dillo = {_id: null, alive: alive};
+
+    !parseInt(weight) === NaN ? _dillo.weight = weight : undefined; 
 
     var dillo = dilloCollection.create(_dillo);
     dillo.on("sync", this.render, this);
