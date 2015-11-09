@@ -11,6 +11,11 @@
   [ "$status" -eq 0 ]
 }
 
+@test "nginx service is running" {
+  run service nginx status
+  [ "$status" -eq 0 ]
+}
+
 @test "mongodb service is enabled" {
   output="$grep '^\s*start on' /etc/init/mongodb.conf"
   status="$?"
