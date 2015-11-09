@@ -7,30 +7,49 @@
 </head>
 <body>
   <div class="container">
-    <div class="jumbotron">
+    <div class="page-header">
       <h1>Texan armadillo care and control assosiation</h1>
-      <div id="dillos">
+    </div>
 
-        <form id="addDillo" action="#">
-          <div class="form-group">
-            <label for="weight-input">Weight</label>
-            <input type="number" class="form-control" id="weight-input" placeholder="1">
-          </div>
+    <div id="dillos">
 
-          <div class="checkbox">
-            <label for="alive-input">
-              <input id="alive-input" type="checkbox"> Alive?
-            </label>
-          </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Insert new Dillo</div>
+        <div class="panel-body">
+          <form id="addDillo" class="form-horizontal" action="#">
+            <div class="form-group">
+              <label for="weight-input" class="col-sm-2 control-label">Weight</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="weight-input" placeholder="1">
+              </div>
+            </div>
 
-          <button type="submit" id="add" class="btn btn-default">Add</button>
-        </form>
+              <div class="form-group">
+                <label for="weight-input" class="col-sm-2 control-label">Alive?</label>
+                <div class="col-sm-10 checkbox">
+                  <label for="">
+                    <input id="alive-input" type="checkbox" />
+                  </label>
+                </div>
+              </div>
 
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" id="add" class="btn btn-success pull-right">
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
       </div>
     </div>
 
+    <hr>
+
     <div id="main">
-      <table class="table">
+      <table class="table table-striped table-bordered">
         <thead>
           <tr>
             <th>_id</th>
@@ -44,11 +63,11 @@
   </div>
 
   <script type="text/template" id="dillo-template">
-    <tr class="dillo-row">
-      <td><%- _id %></label>
-      <td><input class="toggle" type="number" value="<%- weight %>"></td>
-      <td><input class="toggle" type="checkbox" <% if(alive) { %>checked<% } %> ></td>
-    </tr>
+    <th class="js-test"><%- _id %></th>
+    <td><input class="toggle js-weight" type="number" value="<%- weight %>"></td>
+    <td>
+      <input class="toggle js-alive" type="checkbox" <% if(alive) { %>checked<% } %> >
+    </td>
   </script>
 
   <script src="vendor.js" type="text/javascript"></script>

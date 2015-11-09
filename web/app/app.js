@@ -13,16 +13,32 @@ DilloCollection = Backbone.Collection.extend({
   url: apiBaseUrl + "/dillo"
 });
 
+dilloCollection = new DilloCollection();
+
 DilloView = Backbone.View.extend({
   tagName: 'tr',
   template: _.template($('#dillo-template').html()),
   render: function(){
     this.$el.html(this.template(this.model.attributes));
+    this.delegateEvents();
     return this;
-  }
-});
+  },
 
-dilloCollection = new DilloCollection();
+  events: {
+    'change .js-weight': 'updateWeight',
+    'change .js-alive': 'updateAlive'
+  },
+
+  updateWeight: function(evt) {
+    this.model.set('weight', this.$el.find('.js-weight').val());
+    this.model.save();
+  },
+
+  updateAlive: function() {
+    this.model.set('alive', this.$el.find('.js-alive').prop('checked'));
+    this.model.save();
+  },
+});
 
 AppView = Backbone.View.extend({
   el: '#dillos',
@@ -35,7 +51,7 @@ AppView = Backbone.View.extend({
   },
 
   events: {
-    'click #add': 'createDillo'
+    'click #add': 'createDillo',
   },
 
   createDillo: function(evt){
