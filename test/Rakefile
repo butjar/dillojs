@@ -17,5 +17,6 @@ namespace :spec do
   RSpec::Core::RakeTask.new(:all) do |t|
     ENV['DRIVER'] = driver
     t.pattern = "spec/base,spec/#{driver}/*_spec.rb"
+    t.rspec_opts = "--tag ~#{driver}:false"
   end
 end

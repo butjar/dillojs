@@ -4,9 +4,11 @@ api:
     - mongo
   environment:
     - MONGO_URL=mongo
+  container_name: dillojs-api
 
 mongo:
   image: mongo
+  container_name: dillojs-mongo
 
 nginx:
   image: nginx
@@ -18,7 +20,8 @@ nginx:
     - ./nginx/etc/nginx.conf:/etc/nginx/nginx.conf
   volumes_from:
     - web
+  container_name: dillojs-nginx
 
 web:
   build: web/
-
+  container_name: dillojs-web
