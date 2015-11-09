@@ -6,9 +6,10 @@ exports.config =
         'app.js': /^app/
         'vendor.js': /^(bower_components|vendor)/
     stylesheets:
+      defaltExtension: 'less'
       joinTo:
-        'app.css': /^app/
-        'vendor.css': /^(bower_components|vendor)/
+        'app.css': /^(app|bower_components|vendor)/
+      order: []
     templates:
       joinTo: 'app.js'
   overrides:
