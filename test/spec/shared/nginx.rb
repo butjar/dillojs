@@ -15,12 +15,13 @@ shared_examples 'nginx' do
   end
 
   describe file '/etc/nginx/nginx.conf' do
+    let(:content) { subject.content }
     let(:root_location) { 'location / {' }
     let(:api_location) { 'location /api/ {' }
 
     it { expect(subject).to exist }
     it { expect(subject).to be_file }
-    it { expect(subject.content).to include(root_location) }
-    it { expect(subject.content).to include(api_location) }
+    it { expect(content).to include(root_location) }
+    it { expect(content).to include(api_location) }
   end
 end
