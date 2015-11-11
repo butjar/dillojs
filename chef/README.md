@@ -1,10 +1,10 @@
 # dillojs-cookbook
 
-TODO: Enter the cookbook description here.
+Provisions dilloJS.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+- ubuntu-14.04
 
 ## Attributes
 
@@ -16,10 +16,34 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['dillojs']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['dillojs']['home']</tt></td>
+    <td>String</td>
+    <td>DilloJS home directory</td>
+    <td><tt>/opt/dillojs</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['dillojs']['api']['home']</tt></td>
+    <td>String</td>
+    <td>API home directory</td>
+    <td><tt>default['dillojs']['home']/api</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['dillojs']['web']['home']</tt></td>
+    <td>String</td>
+    <td>App home directory</td>
+    <td><tt>default['dillojs']['home']/web</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['dillojs']['npm']['packages']['global']</tt></td>
+    <td>Array</td>
+    <td>Global npm packages</td>
+    <td><tt>["bower", "brunch"]</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['dillojs']['nginx']['root_dir']</tt></td>
+    <td>String</td>
+    <td>Nginx root directory</td>
+    <td><tt>/usr/share/nginx/www/</tt></td>
   </tr>
 </table>
 
@@ -39,4 +63,4 @@ Include `dillojs` in your node's `run_list`:
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Martin Fleischer (<martin.fleischer@kreuzwerker.de>)
