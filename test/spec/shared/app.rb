@@ -6,7 +6,7 @@ shared_examples 'app' do
     it { expect(subject).to be_directory }
   end
 
-  %w(app.js  index.html  vendor.css  vendor.js).each do |asset|
+  %w(app.js index.html app.css vendor.js).each do |asset|
     describe file "/usr/share/nginx/www/#{asset}" do
       it { expect(subject).to exist }
       it { expect(subject).to be_file }
