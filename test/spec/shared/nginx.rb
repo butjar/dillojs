@@ -10,7 +10,7 @@ shared_examples 'nginx' do
     it { expect(subject).to be_running }
   end
 
-  describe port(80), :docker => false do
+  describe port(80), docker: false do
     it { expect(subject).to be_listening }
   end
 

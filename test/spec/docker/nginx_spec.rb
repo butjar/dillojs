@@ -7,6 +7,7 @@ describe 'dillojs' do
     before(:all) do
       set :docker_container, 'dillojs-nginx'
     end
-      include_examples 'nginx'
-    end
+
+    include_examples 'nginx'
   end
+end
